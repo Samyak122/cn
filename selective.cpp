@@ -1,5 +1,7 @@
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 // Returns 1 if frame is lost
@@ -28,11 +30,26 @@ void selectiveRepeat(int n, int w)
             {
                 cout << "Frame " << j << " lost\n";
 
-                cout << "Retransmitting only Frame "
-                     << j << endl;
-            }
+                bool success = false;
 
-            cout << "ACK " << j << " received\n";
+                while(!success)
+                {
+                    cout << "Retransmitting only Frame "
+                         << j << endl;
+
+                    if(lost())
+                        cout << "Frame " << j << " lost again\n";
+                    else
+                    {
+                        cout << "ACK " << j << " received\n";
+                        success = true;
+                    }
+                }
+            }
+            else
+            {
+                cout << "ACK " << j << " received\n";
+            }
         }
     }
 }
@@ -48,6 +65,12 @@ int main()
 
     cout << "Enter window size: ";
     cin >> w;
+
+    if(n <= 0 || w <= 0)
+    {
+        cout << "Invalid input!";
+        return 0;
+    }
 
     selectiveRepeat(n, w);
 

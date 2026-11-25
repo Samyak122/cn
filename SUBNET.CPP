@@ -1,7 +1,6 @@
 
 #include <iostream>
 #include <cstdio>
-#include <cmath>
 using namespace std;
 
 int main()
@@ -27,12 +26,18 @@ int main()
         return 0;
     }
 
+    // Convert IP into 32-bit number
     unsigned int ipNum =
-        (a << 24) | (b << 16) | (c << 8) | d;
+        ((unsigned int)a << 24) |
+        ((unsigned int)b << 16) |
+        ((unsigned int)c << 8) |
+        (unsigned int)d;
 
+    // Calculate subnet mask
     unsigned int mask =
-        (prefix == 0) ? 0 : (0xFFFFFFFF << (32-prefix));
+        (prefix == 0) ? 0 : (0xFFFFFFFFu << (32-prefix));
 
+    // Calculate network and broadcast
     unsigned int network = ipNum & mask;
     unsigned int broadcast = network | ~mask;
 
@@ -58,7 +63,7 @@ int main()
 
     cout << "\nTotal IP Addresses: " << total;
 
-    if (prefix <= 30)
+    if(prefix <= 30)
     {
         cout << "\nFirst Host: "
              << ((network + 1) >> 24 & 255) << "."
@@ -74,7 +79,7 @@ int main()
 
         cout << "\nUsable Hosts: " << total - 2;
     }
-    else if (prefix == 31)
+    else if(prefix == 31)
     {
         cout << "\nUsable Addresses: 2 (point-to-point subnet)";
     }
