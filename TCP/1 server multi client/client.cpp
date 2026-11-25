@@ -64,3 +64,6 @@ int main()
 
     return 0;
 }
+
+// g++ tcp_client.cpp -o tcp_client.exe -lws2_32
+// .\tcp_client.exe

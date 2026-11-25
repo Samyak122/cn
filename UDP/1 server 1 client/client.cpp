@@ -61,3 +61,6 @@ int main()
 
     return 0;
 }
+
+// g++ udp_client.cpp -o udp_client.exe -lws2_32
+// .\udp_client.exe

@@ -82,3 +82,7 @@ int main()
 
     return 0;
 }
+
+
+// g++ tcp_server_multi.cpp -o tcp_server_multi.exe -lws2_32
+// .\tcp_server_multi.exe

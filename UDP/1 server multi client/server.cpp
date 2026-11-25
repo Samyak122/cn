@@ -60,3 +60,6 @@ int main()
 
     return 0;
 }
+
+// g++ udp_server.cpp -o udp_server.exe -lws2_32
+// .\udp_server.exe
